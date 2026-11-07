@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: portabilidade-api
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/portabilidade;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 8080
+central:
+  secret: ${CENTRAL_SECRET:desafio-segredo-local}
+  base-url: ${CENTRAL_BASE_URL:http://localhost:8080/central}
+  polling-enabled: true
+  polling-delay-ms: ${POLLING_DELAY_MS:1000}
+  polling-max-attempts: ${POLLING_MAX_ATTEMPTS:12}
+  connect-timeout-ms: ${CENTRAL_CONNECT_TIMEOUT_MS:1000}
+  read-timeout-ms: ${CENTRAL_READ_TIMEOUT_MS:2000}
+  register-max-attempts: 3
+  backoff-base-ms: 1000
+  backoff-max-ms: 30000
+  backoff-jitter: 0.2
+  # parâmetros da Central simulada
+  confirmation-delay-ms: ${CENTRAL_DELAY_MS:8000}
+  failure-rate: ${CENTRAL_FAILURE_RATE:0.15}
+  unavailable-rate: ${CENTRAL_UNAVAILABLE_RATE:0.10}
+  timeout-rate: ${CENTRAL_TIMEOUT_RATE:0.05}
+  timeout-sleep-ms: 3000
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
