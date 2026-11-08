@@ -1,0 +1,8 @@
+1) Instale JDK 21, Node.js 20+ e IntelliJ IDEA.
+2) Abra a pasta backend no IntelliJ e execute PortabilidadeApplication.
+3) No terminal: cd frontend; npm install; npm run dev.
+4) Acesse http://localhost:5173 e use o beneficiário 12345678900.
+5) Swagger: http://localhost:8080/swagger-ui.html
+6) Para Docker: na raiz, docker compose up --build.
+
+ATENÇÃO: esta é uma implementação demonstrativa inicial. Leia README.md, docs/PLANO_TESTES.md e as limitações conhecidas. Execute e valide os builds/testes no seu ambiente antes de submeter.
