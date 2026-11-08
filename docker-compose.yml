@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: portabilidade-postgres
+    environment:
+      POSTGRES_DB: portabilidade
+      POSTGRES_USER: portabilidade
+      POSTGRES_PASSWORD: portabilidade
+    ports: [ "5432:5432" ]
+    volumes: [ "postgres_data:/var/lib/postgresql/data" ]
+  backend:
+    build: ./backend
+    container_name: portabilidade-api
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/portabilidade
+      DB_USER: portabilidade
+      DB_PASSWORD: portabilidade
+      DB_DRIVER: org.postgresql.Driver
+    ports: [ "8080:8080" ]
+    depends_on: [ postgres ]
+  frontend:
+    build: ./frontend
+    container_name: portabilidade-web
+    ports: [ "5173:5173" ]
+    environment:
+      VITE_API_URL: http://localhost:8080/api
+    depends_on: [ backend ]
+volumes:
+  postgres_data:
