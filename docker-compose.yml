@@ -19,7 +19,7 @@ services:
     ports: [ "8080:8080" ]
     depends_on: [ postgres ]
   frontend:
-    build: ./frontend
+    build: ./portabilidade-convenios/frontend
     container_name: portabilidade-web
     ports: [ "5173:5173" ]
     environment:
